@@ -1,3 +1,22 @@
+<?php 
+
+$min= 10;
+$max= 30;
+
+if(empty($_GET['length'])){
+  $output= "inserire un numero di caratteri compreso tra $min e $max";
+
+}else{
+  if($_GET['length'] < $min || $_GET['length'] > $max ){
+    $output= "la lunghezza non è comprasa tra $min e $max";
+  }else{
+    $output="corretto";
+  }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,20 +31,26 @@
 <h1 class="d-flex justify-content-center">PASSWORD GENERATOR</h1>
 
 
-<div class="container d-flex justify-center my-5 col-6 ">
+<form class="container d-flex justify-center my-5 col-8" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
 
   <p class="fs-4">Inserisci il numero di caratteri per la password</p>
 
   <div class="lenght-counter col-2 ">
 
-    <div class="input-group mx-5">
-      <input type="number" class="form-control" aria-describedby="basic-addon1">
+    <div class="input-group mx-3">
+      <input type="number" name="length" class="form-control" aria-describedby="basic-addon1">
     </div>
 
   </div>
-</div>
+
+  <div class="btn mx-4">
+    <button class="btn-primary" type="submit" name="submit" value="submit">Invia</button>
+    <button class="btn-secondary" type="reset">Reset</button>
+  </div>
+</form>
+
 <div class="messaggio d-flex justify-content-center">
-    <p>messaggio</p>
+    <p><?php echo $output ?></p>
 </div>
   
 </body>
